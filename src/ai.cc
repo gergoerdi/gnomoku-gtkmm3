@@ -1,16 +1,16 @@
 // $Id: ai.cc,v 1.13 2001/11/23 23:07:29 cactus Exp $
 /*
   Gnomoku Copyright (C) 1998-1999 NAGY András <nagya@telnet.hu>
-  
+
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 2
   as published by the Free Software Foundation.
-  
+
   This program is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
-  
+
   You should have received a copy of the GNU General Public License
   along with this program; if not, write to the Free Software
   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
@@ -66,7 +66,7 @@ AI::AI(int arows, int acols)
     width = acols;
     height = arows;
     length = ((height+2) * (width+1) + 1);
-	
+
     board = new int[length];
     score = new int[length];
     for (int i=0; i<length; i++) {
@@ -74,7 +74,7 @@ AI::AI(int arows, int acols)
 	score[i] = -1;
     }
 
-    first = true;    
+    first = true;
     reset();
 }
 
@@ -86,7 +86,7 @@ AI::~AI()
 
 void AI::put_msg(msg_t &msg)
 {
-   switch (msg.type) 
+   switch (msg.type)
    {
    case MSG_START:
 	  reset();
@@ -114,12 +114,12 @@ void AI::get_msg(msg_t &msg)
 		int y = index_y(square);
 		play_move(x, y, 6);
 		my_turn = false;
-	
+
 		msg.type = MSG_PUT;
 		msg.x = x-1;
 		msg.y = y-1;
    }
-}	
+}
 
 void AI::reset()
 {
@@ -156,11 +156,11 @@ int AI::strongest_square()
 // 	printf("\n\n");
 //     }
 
-    for (int i=0; i<length; i++) 
+    for (int i=0; i<length; i++)
     {
 		if ((board[i]) || (score[i] < max)) continue;
 
-		if (score[i] > max) 
+		if (score[i] > max)
 		{
 			count = 1;
 			max = score[i];
@@ -218,19 +218,19 @@ void AI::update_score_dir(int left, int right, int square,
     square = square0;
     count = 0;
 
-   while (square <= square2) 
+   while (square <= square2)
    {
 		count += board[square];
 		square += depl;
    }
 
-   while (square0 <= square1) 
+   while (square0 <= square1)
    {
 		delta = score_trans_table[count] - score_trans_table[count-dval];
-		if (delta) 
+		if (delta)
 		{
 			square = square0;
-			while (square <= square2) 
+			while (square <= square2)
 			{
 				if (board[square]==0)
 					score[square] += delta;
@@ -279,9 +279,3 @@ int AI::max(int a, int b)
 	return b;
   }
 }
-
-
-
-
-
-

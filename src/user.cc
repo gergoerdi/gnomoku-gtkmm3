@@ -1,16 +1,16 @@
 // $Id: user.cc,v 1.8.2.2 2001/12/06 17:30:17 cactus Exp $
 /*
   Gnomoku Copyright (C) 1998-1999 NAGY András <nagya@telnet.hu>
-  
+
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 2
   as published by the Free Software Foundation.
-  
+
   This program is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
-  
+
   You should have received a copy of the GNU General Public License
   along with this program; if not, write to the Free Software
   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
@@ -77,7 +77,7 @@ int User::init()
     if ((sock = socket (PF_INET, SOCK_STREAM, 0)) < 0) return errno;
     addr.sin_family = AF_INET;
     addr.sin_port = htons (port);
-    
+
     if (optype == OP_CLIENT) {
 	if (!(host = gethostbyname (server.c_str ()))) return errno;
 	addr.sin_addr = *(struct in_addr *) host->h_addr;
@@ -94,10 +94,10 @@ int User::init()
     }
 
     str = new fdstream (sock);
-    
+
     msg_t msg;
     struct passwd *id;
-    
+
     id = getpwuid (getuid());
     string gecos (id->pw_gecos);
     string name (id->pw_name);
@@ -149,7 +149,7 @@ void User::put_msg (msg_t &msg)
 void User::get_msg (msg_t &msg)
 {
     (*str) >> msg.type;
-    
+
     switch (msg.type)
     {
     case MSG_GREET:

@@ -53,7 +53,7 @@ fdstreambuf::fdstreambuf (int fd_):
 {
     char *const pbuf = buf + PUTBACK_SIZE;
     pback_end_ = pbuf;
-    
+
     setg (pbuf, pbuf, pbuf);
     setp (buf, buf + buf_size - 1);
 }
@@ -74,7 +74,7 @@ bool fdstreambuf::close()
         while ((rc = ::close (fd)) < 0 && errno == EINTR);
         if (rc < 0)
 	    return false;
-	
+
         fd = -1;
     }
 
@@ -262,5 +262,3 @@ fdstream::~fdstream()
 }
 
 } // namespace Gnomoku
-
-

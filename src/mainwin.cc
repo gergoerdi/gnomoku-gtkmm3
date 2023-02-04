@@ -5,12 +5,12 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 2
   as published by the Free Software Foundation.
-  
+
   This program is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
-  
+
   You should have received a copy of the GNU General Public License
   along with this program; if not, write to the Free Software
   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
@@ -52,17 +52,17 @@ MainWin::MainWin(const Glib::RefPtr<Gtk::Application>& app, int rows_, int cols_
     port ("23776"),
     beep (false),
     options_win (optype, server, port, beep)
-    
+
 {
     // Window
     set_title ("MainWin");
-	
+
     //set_policy (false, false, false);
     //destroy.connect (Gtk::Main::instance ()->quit.slot());
-    
+
     add(m_box);
-	
-	//Logo 
+
+	//Logo
 	try
 	{
 	   m_logo = Gdk::Pixbuf::create_from_file ("gnomoku.png");
@@ -81,27 +81,27 @@ MainWin::MainWin(const Glib::RefPtr<Gtk::Application>& app, int rows_, int cols_
     status.push(greetmsg);
 	status.pack_start(m_pbar);
     //add (status);
-	
+
     //Define the actions:
     m_refActionGroup = Gio::SimpleActionGroup::create();
-        
+
     m_refActionGroup->add_action("NewGame",
     sigc::mem_fun(*this, &MainWin::start_game) );
-    
+
     m_refActionGroup->add_action("quit",
     sigc::mem_fun(*this, &MainWin::exit_cb) );
-    
+
     m_refActionGroup->add_action("preference",
     sigc::mem_fun(*this, &MainWin::options_cb) );
-    
+
     m_refActionGroup->add_action("About",
     sigc::mem_fun(*this, &MainWin::about_cb) );
-    
+
     insert_action_group("main_Game", m_refActionGroup);
 
 
 	m_refBuilder = Gtk::Builder::create();
-    
+
        //Layout the actions in a menubar:
     const char* ui_info =
     "<interface>"
@@ -119,7 +119,7 @@ MainWin::MainWin(const Glib::RefPtr<Gtk::Application>& app, int rows_, int cols_
     "          <attribute name='action'>main_Game.quit</attribute>"
     "          <attribute name='accel'>&lt;Primary&gt;o</attribute>"
     "        </item>"
-    "      </section>"           
+    "      </section>"
     "    </submenu>"
     "    <submenu>"
     "      <attribute name='label' translatable='yes'>_Settings</attribute>"
@@ -139,9 +139,9 @@ MainWin::MainWin(const Glib::RefPtr<Gtk::Application>& app, int rows_, int cols_
     "    </submenu>"
     "  </menu>"
     "</interface>";
-  
-	
-	  
+
+
+
 	try
 	{
 		m_refBuilder->add_from_string(ui_info);
@@ -160,25 +160,25 @@ MainWin::MainWin(const Glib::RefPtr<Gtk::Application>& app, int rows_, int cols_
 	else
 	{
 		auto pMenuBar = Gtk::make_managed<Gtk::MenuBar>(gmenu);
-		
+
 		//Add the MenuBar to the window:
-		m_box.pack_start(*pMenuBar, Gtk::PACK_SHRINK);		  
+		m_box.pack_start(*pMenuBar, Gtk::PACK_SHRINK);
 	}
-	
+
 /*
    // Menu
    install_menu_hints ();
 */
-    
+
    // Table
 	Gtk::Table* table = new Gtk::Table (rows, cols, true);
 	Point *p;
 	tbl = new Point**[rows];
-	for (int y=0; y<rows; y++) 
+	for (int y=0; y<rows; y++)
 	{
 		tbl[y] = new Point*[cols];
-		
-		for(int x=0; x<cols; x++) 
+
+		for(int x=0; x<cols; x++)
 		{
 			p = new Point(y,x);
 			tbl[y][x] = p;
@@ -208,13 +208,13 @@ MainWin::MainWin(const Glib::RefPtr<Gtk::Application>& app, int rows_, int cols_
 
 MainWin::~MainWin()
 {
-   if (opponent) 
+   if (opponent)
    {
 	delete opponent;
 	opponent = nullptr;
    }
-    
-   for (int y=0; y<rows; y++) 
+
+   for (int y=0; y<rows; y++)
    {
 		for (int x=0; x<cols; x++) {
 			delete tbl[y][x];
@@ -236,7 +236,7 @@ int MainWin::status_timeout()
 	i = low_bound;
 
    m_pbar.set_fraction (i);
-    
+
    return true;
 }
 
@@ -255,13 +255,13 @@ void MainWin::message(const char *fmt, ...)
 {
     va_list ap;
     char text[max_msg_len];
-    
+
     va_start(ap, fmt);
     vsnprintf(text, max_msg_len, fmt, ap);
-    
+
     status.pop();
     status.push(text);
-    
+
     va_end(ap);
 }
 
@@ -283,7 +283,7 @@ void MainWin::start_game()
     msg_t msg;
 
     cleanup();
-    
+
     if (opponent) {
 	if (opponent->ok()) {
 	    msg.type = MSG_START;
@@ -341,7 +341,7 @@ void MainWin::get_msg()
 		{
 			tbl[msg.y][msg.x]->set(2);
 			tbl[msg.y][msg.x]->grab_focus();
-			if (!won(msg.y, msg.x)) 
+			if (!won(msg.y, msg.x))
 			{
 			my_turn = true;
 			message(("It's your turn"));
@@ -369,15 +369,15 @@ void MainWin::get_msg()
 void MainWin::point_pressed(Point *p)
 {
    msg_t msg;
-    
-   if (opponent && opponent->ok() && my_turn && !p->get()) 
+
+   if (opponent && opponent->ok() && my_turn && !p->get())
    {
 		msg.type = MSG_PUT;
 		msg.y = p->gety();
 		msg.x = p->getx();
 		opponent->put_msg(msg);
 		p->set(1);
-		if (!won(msg.y, msg.x)) 
+		if (!won(msg.y, msg.x))
 		{
 			my_turn = false;
 			message(("Waiting for your party to respond"));
@@ -397,7 +397,7 @@ bool MainWin::won(int y, int x)
 
    for (int ay=-1; ay<=1; ay++)
 	for (int ax=-1; ax<=1; ax++)
-	   if (ay || ax) 
+	   if (ay || ax)
 	   {
 			int ny=y, nx=x;
 			while (((ny+=ay)>=0) && ((nx+=ax)>=0) &&
@@ -417,7 +417,7 @@ bool MainWin::won(int y, int x)
 	   for (int p=0; p<5; p++)
 		points[i][p]->set_blink(true);
 	   opponent->won();
-	    
+
 	   if (who==1)
 			message(("You won the game"));
 	   else
@@ -456,4 +456,3 @@ void MainWin::about_cb ()
    about.set_comments ("Gomoku game for GNOME");
    about.run();
 }
-

@@ -18,7 +18,7 @@
 
 #include "mainwin.h"
 
-//#include "config.h"
+#include "config.h"
 //#include <libgnome/libgnome.h>
 
 #include <cstdarg>
@@ -77,7 +77,7 @@ MainWin::MainWin(const Glib::RefPtr<Gtk::Application>& app, int rows_, int cols_
 	}
 
     // Status bar
-    std::string greetmsg = ("Gnomoku VERSION -- COPYRIGHT");
+    std::string greetmsg = (std::string("Gnomoku ") + VERSION + " -- " + COPYRIGHT);
     status.push(greetmsg);
 	status.pack_start(m_pbar);
     //add (status);

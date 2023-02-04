@@ -19,18 +19,12 @@
 //#include "config.h"
 
 #include "point.h"
-
-// #include "px0.xpm"
-// #include "px1.xpm"
-// #include "px2.xpm"
+#include "pic_px0.h"
+#include "pic_px1.h"
+#include "pic_px2.h"
 
 #include <gtkmm/main.h>
 #include <iostream>
-
-//const char **pixdata[3] = { px0_xpm, px1_xpm, px2_xpm };
-//std::string pixdata[] = { px0_xpm, px1_xpm, px2_xpm };
-
-
 
 using namespace Gnomoku;
 
@@ -88,27 +82,16 @@ void Point::vset(int vp_)
   if (!initialized)
   init();
   vp = vp_;
-  //const char *ch = *pixdata[vp];
-  //std::string s = ch;
-  //px.set(s);
-  /*if(vp == 0)
-  {
-	  px.set("/home/suporte/Projetos/Projetos/Projetos/Gnomoku-3.0/px0.png");
-  }else if(vp == 1){
-	  px.set("/home/suporte/Projetos/Projetos/Projetos/Gnomoku-3.0/px1.png");
-  }else{
-	  px.set("/home/suporte/Projetos/Projetos/Projetos/Gnomoku-3.0/px2.png");
-  }*/
 
   switch(vp) {
 	case 0:
-	  px.set("px0.png");
+          px.set(Gdk::Pixbuf::create_from_inline (-1, pic_px0, false));
 	  break;
 	case 1:
-	  px.set("px1.png");
+          px.set(Gdk::Pixbuf::create_from_inline (-1, pic_px1, false));
 	  break;
 	default:
-	  px.set("px2.png");
+          px.set(Gdk::Pixbuf::create_from_inline (-1, pic_px2, false));
   }
 
 

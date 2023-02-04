@@ -35,6 +35,8 @@
 #include <gtkmm/aboutdialog.h>
 //#include <libgnomeui/gnome-uidefs.h>
 
+#include "pic_gnomoku.h"
+
 #define COPYRIGHT "(C) NAGY András, ÉRDI Gergõ"
 
 using namespace Gnomoku;
@@ -65,7 +67,7 @@ MainWin::MainWin(const Glib::RefPtr<Gtk::Application>& app, int rows_, int cols_
 	//Logo
 	try
 	{
-	   m_logo = Gdk::Pixbuf::create_from_file ("gnomoku.png");
+          m_logo = Gdk::Pixbuf::create_from_inline (-1, pic_gnomoku, false);
 	}
 	catch (const Glib::FileError& ex)
 	{

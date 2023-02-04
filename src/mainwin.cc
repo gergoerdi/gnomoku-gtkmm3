@@ -18,9 +18,6 @@
 
 #include "mainwin.h"
 
-#include "config.h"
-//#include <libgnome/libgnome.h>
-
 #include <cstdarg>
 #include <cerrno>
 //#define _GNU_SOURCE
@@ -37,6 +34,7 @@
 
 #include "pic_gnomoku.h"
 
+#define VERSION "1.4"
 #define COPYRIGHT "(C) NAGY András, ÉRDI Gergõ"
 
 using namespace Gnomoku;

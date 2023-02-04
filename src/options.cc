@@ -18,7 +18,6 @@
 
 #include "options.h"
 
-#include "config.h"
 //#include <libgnome/libgnome.h>
 
 

@@ -22,7 +22,7 @@
 #include "opponent.h"
 #include <pthread.h>
 #include <string>
-#include <iostream.h>
+#include <iostream>
 
 namespace Gnomoku
 {

@@ -22,7 +22,8 @@
 
 #include <cstddef>
 #include <iostream>
-#include <streambuf.h> /* libstdc++-v2 doesn't have <streambuf> */
+#include <cstring>
+#include <streambuf> /* libstdc++-v2 doesn't have <streambuf> */
 
 namespace Gnomoku
 {

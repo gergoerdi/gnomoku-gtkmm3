@@ -1,6 +1,6 @@
 // $Id: mainwin.h,v 1.13 2001/11/23 23:07:29 cactus Exp $ -*- c++ -*-
 /*
-  Gnomoku Copyright (C) 1998-1999 NAGY Andr·s <nagya@telnet.hu>
+  Gnomoku Copyright (C) 1998-1999 NAGY Andr√°s <nagya@telnet.hu>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 2
@@ -23,30 +23,42 @@
 #include "ai.h"
 #include "user.h"
 #include "options.h"
-
-#include <gnome--/app.h>
-#include <gnome--/appbar.h>
+#include <gtkmm.h>
+#include <gtkmm/window.h>
+#include <gtkmm/statusbar.h>
 
 namespace Gnomoku
 {
-    class MainWin : public Gnome::App {
-	Gnome::AppBar status;
+   class MainWin : public Gtk::Window 
+   {
+		int	rows;
+		int	cols;
+		Gtk::Box m_box;
+		Gtk::Statusbar status;
+		Gtk::ProgressBar m_pbar;
+		Glib::RefPtr<Gtk::Builder> m_refBuilder;
+		Glib::RefPtr<Gio::SimpleActionGroup> m_refActionGroup;
+		
 	
-	Point     ***tbl;
-	int          rows;
-	int          cols;
+		
+		
+		Point     ***tbl;
 	
-	Opponent    *opponent;
-	bool         my_turn;
+		Opponent    *opponent;
+		bool         my_turn;
 	
-	op_t         optype;
-	std::string  server, port;
-	bool         beep;
-	Options      options_win;
-    public:
-	MainWin (int rows = 15, int cols = 15);
+		op_t         optype;
+		std::string  server, port;
+		bool         beep;
+		Options      options_win;
+		
+		Glib::RefPtr<Gdk::Pixbuf> m_logo;
+   
+   public:
+   MainWin (const Glib::RefPtr<Gtk::Application>& app, int rows = 15, int cols = 15);
 	~MainWin ();
-    private:
+	
+   private:
 	void reset();
 	void message(const char *fmt, ...);
 	void cleanup();
@@ -60,8 +72,9 @@ namespace Gnomoku
 	void exit_cb ();
 	void options_cb ();
 	void about_cb ();
-	SigC::Connection status_conn;
-    };
+	sigc::connection status_conn;
+   };
 }
 
 #endif
+

@@ -1,6 +1,6 @@
 // $Id: opponent.h,v 1.6 2001/11/23 23:07:29 cactus Exp $ -*- c++ -*-
 /*
-  Gnomoku Copyright (C) 1998-1999 NAGY Andr·s <nagya@telnet.hu>
+  Gnomoku Copyright (C) 1998-1999 NAGY Andr√°s <nagya@telnet.hu>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 2
@@ -23,17 +23,25 @@
 
 #define GNOMOKU_VERSION 001;
 enum op_t { OP_AI, OP_CLIENT, OP_SERVER };
-//enum msgtype { MSG_GREET, MSG_START, MSG_PUT, MSG_CLOSE };
+enum msgtype { MSG_GREET = 1, MSG_START, MSG_PUT, MSG_CLOSE };
+/*
 #define msgtype int
 #define MSG_GREET 1
 #define MSG_START 2
 #define MSG_PUT 3
 #define MSG_CLOSE 4
+*/
+
+//const int msgtype = 0;
+//const int MSG_GREET = 1;
+//const int MSG_START = 2;
+//const int MSG_PUT = 3;
+//const int MSG_CLOSE = 4;
 
 namespace Gnomoku
 {    
     struct msg_t {
-	msgtype type;
+	int type;
 	int version;
 	std::string ident;
 	int y, x;
@@ -52,3 +60,4 @@ namespace Gnomoku
 }
 
 #endif
+

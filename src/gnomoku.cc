@@ -18,23 +18,26 @@
 
 #include "config.h"
 
-#include <gnome--.h>
-#include <stdlib.h>
-#include <time.h>
+#include <gtkmm.h>
+#include <cstdlib>
+#include <ctime>
 #include "mainwin.h"
 
 // Main program
 int main(int argc, char **argv)
 {
-    bindtextdomain(PACKAGE, GNOMELOCALEDIR);
-    textdomain(PACKAGE);
+   // bindtextdomain(PACKAGE, GNOMELOCALEDIR);
+   // textdomain(PACKAGE);
 
-    Gnome::Main m(PACKAGE, VERSION, argc, argv);
-    Gnomoku::MainWin w;
-    srand(time(NULL));
+   // Gtk::Main m(PACKAGE, VERSION, argc, argv);
+
+  auto app =  Gtk::Application::create(argc, argv,
+      "org.gtkmm.examples.base");
+    Gnomoku::MainWin w(app);
+    std::srand(time(NULL));
 
     w.show();
-    m.run();
+    return app->run(w);
 
-    return 0;
+    //return 0;
 }

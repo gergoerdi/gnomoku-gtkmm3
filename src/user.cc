@@ -67,7 +67,8 @@ void* User::sinit(User *ins)
 int User::init()
 {
     struct sockaddr_in  addr;
-    size_t              size;
+    //size_t              size;
+	unsigned int		size;
     struct hostent     *host;
     int                 sockn;
 

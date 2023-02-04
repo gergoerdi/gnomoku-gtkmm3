@@ -184,7 +184,7 @@ MainWin::MainWin(const Glib::RefPtr<Gtk::Application>& app, int rows_, int cols_
 			tbl[y][x] = p;
 			p->signal_clicked().connect(
 			sigc::bind<Point*>(sigc::mem_fun(this, &MainWin::point_pressed), p));
-			table->attach(*p, x, x+1, y, y+1, Gtk::EXPAND, Gtk::EXPAND);
+			table->attach(*p, x, x+1, y, y+1, Gtk::EXPAND | Gtk::FILL, Gtk::EXPAND | Gtk::FILL);
 		}
 	}
     table->set_border_width (2);

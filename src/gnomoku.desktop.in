@@ -1,0 +1,7 @@
+[Desktop Entry]
+_Name=Gnomoku
+_Comment=Gomoku game for GNOME
+Icon=gnomoku.png
+Exec=gnomoku
+Terminal=0
+Type=Application

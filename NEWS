@@ -1,0 +1,5 @@
+Gnomoku 1.4
+===========
+
+Changes:
+	* Does not freeze when the network connection dies

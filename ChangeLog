@@ -1,0 +1,167 @@
+2002-05-26  Carlos Perello Marin <carlos@gnome-db.org>
+
+	* configure.in (ALL_LINGUAS): Added pt_BR.
+
+2002-02-05  Abel Cheung  <maddog@linux.org.hk>
+
+	* configure.in: Added "zh_CN" (simplified Chinese) to ALL_LINGUAS.
+
+2001-12-29  Simos Xenitellis  <simos@hellug.gr>
+
+	* configure.in: Added "el" (Greek) to ALL_LINGUAS.
+
+2001-11-28  ERDI Gergo  <cactus@cactus.rulez.org>
+
+	* mainwin.cc (MainWin): Meaningful window title:)
+
+2001-11-25  ERDI Gergo  <cactus@cactus.rulez.org>
+
+	* user.cc: Removed old cruft
+
+	* fdstream.cc (sys_write_): Removed run-time debug message
+
+2001-11-24  ERDI Gergo  <cactus@cactus.rulez.org>
+
+	* NEWS: 1.3 info
+
+	* mainwin.cc (about_cb): Added Daniel Elstner to Authors list
+
+2001-11-23  ERDI Gergo  <cactus@cactus.rulez.org>
+
+	* fdstream.h: new class by Daniel Elstner 
+
+2001-11-21  ERDI Gergo  <cactus@cactus.rulez.org>
+
+	G++ 3.0 compile-time fixes (not complete)
+
+2001-11-12  Roy-Magne Mo  <rmo@sunnmore.net>
+	
+	* configure.in: Added nn to ALL_LINGUAS
+
+2001-10-10  ERDI Gergo  <cactus@cactus.rulez.org>
+
+	* mainwin.cc (status_timeout): Code cleanup
+
+	* mainwin.h:
+	* options.h: Remove inclusion of whole gnome--.h
+
+	* configure.in: bumped version to 1.3
+	use xml-i18n-tools
+
+2001-09-25  Christian Rose  <menthos@menthos.com>
+
+	* configure.in: Added "sv" to ALL_LINGUAS.
+	* gnomoku.desktop: Added Swedish entries.
+
+2001-09-24  Stanislav Visnovsky  <visnovsky@nenya.ms.mff.cuni.cz>
+
+	* configure.in: Added "sk" to ALL_LINGUAS.
+	* gnomoku.desktop: Added Slovak entries.
+
+2001-08-31  Abel Cheung  <maddog@linux.org.hk>
+
+	* configure.in (ALL_LINGUAS): zh_TW.Big5 -> zh_TW
+
+2001-08-27  Abel Cheung  <maddog@linux.org.hk>
+
+	* configure.in (ALL_LINGUAS): Removed es temporarily.
+
+2001-08-03  ERDI Gergo  <cactus@cactus.rulez.org>
+
+	* NEWS: release notes for 1.2
+
+	* mainwin.cc: removed very old GNOME-- 1.1.x API cruft
+
+2001-06-17  ERDI Gergo  <cactus@cactus.rulez.org>
+
+	* configure.in: More powerful check for GNOME-- 1.1.15+
+
+	* options.{cc,h}: Disable/enable server name/server port entries
+	according to current opponent type
+
+2001-05-31  ERDI Gergo  <cactus@cactus.rulez.org>
+
+	* mainwin.cc (Gnomoku): GNOME-- 1.1.17 porting action
+
+2001-04-18  Akira TAGOH  <tagoh@gnome.gr.jp>
+
+	* configure.in (ALL_LINGUAS): Added ja.
+
+2001-03-22  Christophe Merlet  <redfox@eikonex.org>
+
+	* configure.in: Added fr (French) in $ALL_LINGUAS.
+	* gnomoku.desktop: Added French strings.
+
+2001-03-09  ERDI Gergo  <cactus@cactus.rulez.org>
+
+	* configure.in (ALL_LINGUAS): Added de
+
+2001-02-26 Carlos Perello Marin <carlos@gnome-db.org>
+
+	* configure.in (ALL_LINGUAS): Added es.
+
+2001-02-11  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* configure.in: Added "no" to ALL_LINGUAS.
+	
+2001-02-07  ERDI Gergo  <cactus@cactus.rulez.org>
+
+	* configure.in: Registered Chinese translation that silently got
+	commited to po/
+
+2000-09-02  ERDI Gergo  <cactus@cactus.rulez.org>
+
+	* options.cc (Options): Changed `append_button_with_pixmap' to
+	`append_button' (tracking unstable GNOME-- again)
+
+2000-06-13  ERDI Gergo  <cactus@cactus.rulez.org>
+
+	* mainwin.cc (start_game): Create new timeout connection only if
+	no one exists
+
+2000-05-22  ERDI Gergo  <cactus@cactus.rulez.org>
+
+	* TODO: Removed obsolated Gnome-- menu API TODO item
+
+	* gnomoku.cc (main): We need to be able to access the Gettext
+	database regardless of the installation prefix
+
+2000-05-21  ERDI Gergo  <cactus@cactus.rulez.org>
+
+	* configure.in (VERSION): bumped package and GTK-- version numbers
+
+	* mainwin.cc (Gnomoku): Migrate to Gnome-- 1.2 stock menu API
+
+	* Makefile.am (gnomoku_LDADD): added PThread library
+
+2000-02-02  ERDI Gergo  <cactus@cactus.rulez.org>
+
+	* mainwin.cc (Gnomoku): Removed superflous gnomoku.h, using
+	PACKAGE and VERSION everywhere
+	(quit): Fixed a `double exit from GtkMain' situation
+
+	* gnomoku.cc: ditto
+
+2000-01-26  ERDI Gergo  <cactus@cactus.rulez.org>
+
+	* mainwin.cc (Gnomoku): Changed to Gnome-- 1.1.8 API
+
+2000-01-12  ERDI Gergo  <cactus@cactus.rulez.org>
+
+	* mainwin.cc (tmout): The statusbar should be stopped on errors too
+
+	* release.sh: changed release tag from GNOMOKU to gnomoku
+
+	* mainwin.cc (status_timeout): Added a statusbar to tell the user
+	to wait patiently for the Gnomoku clients to connect
+
+Sun Jan 09 15:51:48 2000  ERDI Gergo  <cactus@cactus.rulez.org>
+
+	* options.cc (Options): Tigert spotted a duplicated label in the
+	Options dialog
+
+1999-10-08  ERDI Gergo  <cactus@cactus.rulez.org>
+
+	* Version 0.1: Initial release from the GNOME CVS source
+	tree. Also, old versions used a date-based versioning.
+
